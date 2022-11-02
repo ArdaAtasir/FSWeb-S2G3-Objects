@@ -15,10 +15,16 @@ const serpmeKahvalti = {isim: "Serpme Kahvaltı", fiyat: 16, kategori:"Kahvaltı
 */
 
 
-function MenuElemaniOlustur(/*Kodlar buraya*/){
-	/*Kodlar buraya*/
-}
+function MenuElemaniOlustur(isim, fiyat, kategori) {
 
+	let menü = {
+	isim : isim ,
+	fiyat : fiyat,
+	kategori: kategori,
+	}
+	return menü;
+}
+console.log (MenuElemaniOlustur('Cheeseburger', 8, 'Burgerler'));
 
 
 /*  Görev 1b (otomatik test yok): 
@@ -30,6 +36,7 @@ function MenuElemaniOlustur(/*Kodlar buraya*/){
 	
 	Örnek: MenuElemaniOlustur("Karışık Pizza",5,"Pizzalar") şunu döndürür: {isim:"Karışık Pizza",fiyat:5,kategori:"Pizzalar"}
 */
+console.log(MenuElemaniOlustur('Mohito',125,'Alkol'));
 
 
 
@@ -51,7 +58,25 @@ const burger = {
 	fiyat: 18, 
 	kategori: "Öğle Yemeği", 
 
+	indirim: function(kisi){
+          
+		if(kisi === "öğrenci" || kisi === "öğretmen") {
+			return this.fiyat*0.75 
+
+		} else if (kisi ==="diğer"){
+			return this.fiyat * 0.90;
+		}
+		else{
+			retun (`${isim.kisi} efendim öğrenci ya da öğretmen olmadiginiz içi ${this.fiyat} ödeyeceksiniz `);
+		}
+
+	}
+
 }
+
+console.log(burger.indirim("öğretmen"));
+console.log(burger.indirim("diğer"));
+
 
 
 
@@ -71,7 +96,12 @@ const degerlendirmeler = [
 	Yukarıdaki degerlendirmeler dizisini(array) kullanarak:
 	1. Sadece Ahmet'in geribildirimini konsolda görüntüleyin - fonksiyona gerek yok
 */
-
+for (let i=0 ; i<degerlendirmeler.length ;i++) {
+	if (degerlendirmeler[i].isim === "Ahmet"){
+		console.log(degerlendirmeler[i]. geribildirim);
+	}
+}
+    
 
 
 /*  Görev 4 (ototest yok):  
@@ -79,6 +109,8 @@ const degerlendirmeler = [
 	1. Bu geribildirimi Reyna'nın değerlendirmesine ekleyin - "bu mekan bir harika dostum, yine de garsonun gülümsememesinden puan kırdım"
 	2. degerlendirmeler dizisini konsolda görüntüleyerek çalışmanızı kontrol edin
 */
+degerlendirmeler[7].geribildirim = "bu mekan bir harika dostum, yine de garsonun gülümsememesinden puan kırdım ";
+console.log(degerlendirmeler[7].geribildirim);
 
 
 
@@ -94,10 +126,20 @@ const degerlendirmeler = [
 */
 
 
-function DegerledirmeEkle(/*Kodlar buraya */){
-	/*Kodlar buraya */
-	
+function DegerledirmeEkle(callbackDeğerlendirmeler, isim,puan,geribildirim){
+	const degerlendirme = {
+		isim:isim,
+		puan:puan,
+		geribildirim:geribildirim
+	}
+
+	callbackDeğerlendirmeler.push(degerlendirme);
+	return callbackDeğerlendirmeler;
+
 }
+
+console.log(DegerledirmeEkle(degerlendirmeler, 'Hurşut', 2, 'Boktan yemekler!'));
+
 
 
 
@@ -112,10 +154,19 @@ function DegerledirmeEkle(/*Kodlar buraya */){
 */
 
 
-function AnahtardanDegerlendirmeAl(/*Kodlar buraya*/) {
-	/*Kodlar buraya*/
+function AnahtardanDegerlendirmeAl(array,index) {
+
+
+
+	let isim = array[index].isim;
+	let puan = array[index].puan;
+	let geribildirim = array[index].geribildirim;
+
+	return `${isim} isimli kişi ${puan} puan verdi ve şunları yazdı: ${geribildirim}`
+
 
 }
+console.log(AnahtardanDegerlendirmeAl(degerlendirmeler,0))
 
 
 
@@ -132,10 +183,12 @@ function AnahtardanDegerlendirmeAl(/*Kodlar buraya*/) {
 */
 
 
-function SonDegerlendirmeyiAl(/*Kodlar buraya*/) {
-	/*Kodlar buraya*/
+function SonDegerlendirmeyiAl(hazırDizi) {
+	let soneleman = hazırDizi[hazırDizi.length-1];
+	return `${soneleman.isim} isimli kişi ${soneleman.puan} puan verdi ve şunları yazdı: ${soneleman.geribildirim}`;
+	
 } 
-
+console.log (SonDegerlendirmeyiAl(degerlendirmeler));
 
 
 /////////////// BONUS  GÖRVLER////////////////////
